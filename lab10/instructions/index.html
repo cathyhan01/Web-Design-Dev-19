@@ -1,0 +1,76 @@
+
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>WDD Lab 10</title>
+    <link rel="stylesheet" type="text/css" href="assets/styles/atom-one-light.css">
+    <link rel="stylesheet" type="text/css" href="assets/styles/style.css">
+</head>
+<body>
+    <div id="container">
+        <div id="header">
+            <div id="header-caption">
+                <img id="header-caption-logo" src="assets/images/logo.png">
+                <div id="header-caption-name">Web Design DeCal</div>
+            </div>
+            <div id="header-content">
+                <div id="header-title">Lab 10</div>
+            </div>
+        </div>
+        <div class="info-title">WDD DJ</div>
+        <div class="section">
+            <div class="block block-highlight">
+
+            <div class="info-required">Required Tool: Text Editor and Google Chrome Web Inspector</div>
+            <div class="info-intro">Welcome to your last lab of the decal! We hope it's been fun doing these labs and that you guys now feel readily equipped to make anything your heart desires from here on :')
+              <p>This week, we will work with Javascript, event handlers, and arrays to turn your computer into an instrument.</p></div>
+
+
+            </div>
+<div class="body-header">Assignment</div>
+
+<!-- Body starts here -->
+<p>At the end of this lab, you should have something like this (no sound):</p>
+<video controls>
+    <source src="assets/videos/final.mov" type="video/mp4">
+    Your browser does not support the video tag.
+</video>
+<h2 id="background-info">Background info</h2>
+<p>For this assignment you will need to refer to both the HTML and the JavaScript files, but you will only need to alter the JavaScript.</p>
+
+<p>Let's take a look closely at what's inside our HTML file. Take inside the class <code>.grid</code>. These are tiles with class <code>grid-cell</code> that represent the sounds that we play. 
+Note the id's like <code>brass-soundtile</code> --> they're connected with what sound we want to play.</p>
+<p>Now scroll to the bottom of the HTML file. We have a bunch of <code>audio</code> tags with <code>sound </code>files we want to play. Also note the ids. Do they seem familiar?</p> 
+
+
+<p>Let's get familiar with a few new things in our JavaScript file. Take a look at our arrays: <code>keys</code>, <code>sounds</code>, and <code>colors</code>. Note how they all have 9 items in them, one for each tile we see on the screen. The idea is that, when we press a key, we want to play a sound, and flash a color.</p>
+<p>To achieve this effect, we have two event handlers: <code>onkeydown</code> and <code>onkeyup</code>. This handles what happens when we press down on a key, and lift up from a key, respectively. </p>
+
+<h2 id="instructions">Instructions</h2>
+<p>Let's create our DJ app by playing a sound inside our <code>onkeydown</code> function! Note that <code>onkeydown</code> takes a parameter called event. We console logged it for you, so check your inspector in your browser and see what it prints!</p>
+<p>From there let's think about what we should do for these arrays. Look again above to see what we want to do when we press a key. If we look at our grid and match the arrays <code>keys</code>, <code>sounds</code>, and <code>colors</code>, 
+we see that they are already in order for us! That's great!</p>
+
+<p>We want to do the following</p>
+<ol>
+<li>Get and store the index of the key that we pressed (what's <code>event.key</code>?) using <code>.indexOf()</code>. This is a new function that finds the index of the element that we pass in.</li>
+<li>Use this index to get the corresponding sound in <code>sounds</code> and color in <code>colors</code>. Call these values <code>soundId</code> and <code>colorId</code></li>
+<li>Inside our conditional statement, we haven't assigned values to <code>sound</code> or <code>tile</code>. Let's use <code>document.getElementById</code>to find the right id for our 
+<code>sound</code> tag and <code>.grid-cell</code> element. Do you remember how they're related?</li>
+<li>If you got that working, everytime you press a key, it plays!</li>
+<li>Change the background-color of <code>tile</code> to <code>colorId</code>.</li>
+</ol>
+
+<p>Mission accomplished! But you might have noticed that once we press a key, the color doesn't change back. Let's change that.</p>
+<p>What we want to do is that when we let go of the key, all the tiles return to the color <code>#333333</code>.</p>
+<ol>
+    <li>In our <code>onkeyup</code> function, let's use <code>document.getElementByClassNames</code> to select all elements with class <code>.grid-cell</code></li>
+    <li>Use a for loop to go through each element (how many are there?) using <code>.length</code>. Inside our for loop, set each element's background color back to black.</li>
+</ol>
+
+<p>Now we can play music and look so cool doing so :)</p>
+<!-- Body ends here -->
+</body>
+</html>
+<!-- @webdesigndecal/mark2html@0.0.5 -->

@@ -1,0 +1,212 @@
+<html>
+<head>
+    <title>WDD | Hands-on 10</title>
+    <link href="http://fonts.googleapis.com/css?family=Karla:300,400,700" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" type="text/css" href="assets/styles/style.css">
+</head>
+<body>
+	<div id="container">
+		<div id="header">
+			<div id="header-caption">
+				<div id="header-caption-logo"><img class="img-scaled" src="assets/images/logo.png" /></div>
+				<div id="header-caption-name">Web Design DeCal</div>
+				<div class="clear"></div>
+			</div>
+			<div id="header-content">
+				<!-- ASSIGNMENT NAME -->
+				<div id="header-title">Hands-on 9</div>
+				<!-- DUE DATE -->
+				<div id="header-due">November 13</div>
+				<div class="clear"></div>
+			</div>
+		</div>
+		<div class="section">
+			<div class="info">
+				<!-- ASSIGNMENT TITLE -->
+				<div class="info-title">Building an Image Carousel</div>
+				<div class="info-content">
+					<!-- INTRODUCTION -->
+					<div class="info-intro">An image carousel may seem fancy, but we can actually make one using everything we've learned so far!</div>
+				</div>
+			</div>
+			<div class="body">
+				<p>We're going to create this image slider, similar to the ones on Instagram!</p>
+
+				<p><img src="assets/images/final.gif" alt=""></p>
+
+				<div class="body-header">Part 0: Think about what we're making</div>
+
+				<p>
+					<strong>How does the image sliding work?</strong> Imagine a horizontal strip of images and a "picture frame". When you click on one of the buttons, the image strip is moving to the left or right, changing the image currently in the "picture frame".
+				</p>
+				<p>
+					Okay, that brings us to the next thing to think about. <strong>What does it mean for the image strip to "move left or right"?</strong> Consider how to achieve this with CSS. This effect translates to using CSS position properties. If we change the <code>left</code> offset for the div that contains the row of images, then that will shift the strip left and right.
+				</p>
+				<p>
+					<img src="assets/images/diagram.png" alt="">
+				</p>
+				<p>
+					<strong>Finally, how do we know what to change the image row position to?</strong> In our CSS, we picked the dimensions for the "picture frame," and also made our images that same size. In our JavaScript, if we keep track of the image we are currently displaying, then the total offset amount would be <code>width of image × how many images from the left</code>.
+				</p>
+				<p>
+					<strong>For example: </strong>Suppose we know we're currently on image #2 and that each image is 400px wide. To display the next image, we know it is image #3. <code>400 pixels × 2 images = 800 pixels to the left</code>. This is a <em>negative</em> number if you think of the left edge of the frame as zero! So we would set the CSS to <code>left: -800px;</code>.
+				</p>
+				<p>
+					With this in mind, let's further translate these ideas to code!
+				</p>
+
+				<div class="body-header">Part 1: HTML & CSS</div>
+
+				<p>
+					Open <code>index.html</code>, and it should look pretty bare, like this:
+				</p>
+				<p>
+					<img src="assets/images/initial.png" alt="">
+				</p>
+				<p>
+					In our HTML, <code>&lt;div id="carousel"&gt;</code> is our "picture frame" which is shown by the blue box. <code>&lt;div id="carousel-image-row"&gt;</code> is the div that has the images, and will become our image strip that we shift.
+				</p>
+				<ol>
+					<li>
+						We've provided three pictures of Diana's doggo in <code>assets/images</code>! Fill in the <code>img</code> tags in <code>index.html</code>.
+					</li>
+					<li>
+						We need the images in a row to create the image strip we described in Part 0. Add CSS to do this in <code>style.css</code>.
+						<div class="hint">Hint: flexbox</div>
+					</li>
+					<li>
+						The image strip will be offset <em>relative</em> to the left edge of the "picture frame." Add two lines of CSS: the appropriate CSS <code>position</code> rule to <code>#carousel-image-row</code>, and also <code>left: 0px</code> which is where it starts out initially.
+					</li>
+				</ol>
+
+				Your page should now look like this:
+        <p>
+					<img src="assets/images/after1.png" alt="">
+				</p>
+
+				<p></p>
+
+
+				<div class="body-header">Part 2: JavaScript</div>
+
+				<p><small>
+					Reminder that JavaScript <strong>is not</strong> Java, and some people will get very confused if you use these terms interchangeably. We are working with Java<em>Script</em> in this class!
+				</small></p>
+
+				<p>
+					Open <code>script.js</code>. We are going to be doing more of what we've already covered in class and homework. If you need any refresher, here are the relevant slides:
+					<ul>
+						<li><a href="https://docs.google.com/presentation/d/1mYHx-tCHuuaol38V1u-_1PqzOdkUCAfOpgzVrYbr2eQ/edit#slide=id.g709ffa3abb_0_32" target="_blank">creating variables</a></li>
+						<li><a href="https://docs.google.com/presentation/d/1mYHx-tCHuuaol38V1u-_1PqzOdkUCAfOpgzVrYbr2eQ/edit#slide=id.g709ffa3abb_0_444" target="_blank">using <code>document.getElementById</code></a></li>
+						<li><a href="https://docs.google.com/presentation/d/1mYHx-tCHuuaol38V1u-_1PqzOdkUCAfOpgzVrYbr2eQ/edit#slide=id.g709ffa3abb_0_0" target="_blank">defining functions</a></li>
+						<li><a href="https://docs.google.com/presentation/d/1nwmAdptjKAXA1sAuU2DkcKMnUVsmRYxJ5tMQw7IRnMg/edit#slide=id.g74383bed0e_0_768" target="_blank">setting the <code>onclick</code> function</a></li>
+						<li><a href="https://docs.google.com/presentation/d/1mYHx-tCHuuaol38V1u-_1PqzOdkUCAfOpgzVrYbr2eQ/edit#slide=id.g709ffa3abb_0_552" target="_blank">adding and removing css classes</a></li>
+						<li><a href="https://docs.google.com/presentation/d/1nwmAdptjKAXA1sAuU2DkcKMnUVsmRYxJ5tMQw7IRnMg/edit#slide=id.g743abc3e3e_5_63" target="_blank">changing individual css</a></li>
+						<li><a href="https://docs.google.com/presentation/d/1nwmAdptjKAXA1sAuU2DkcKMnUVsmRYxJ5tMQw7IRnMg/edit#slide=id.g74383bed0e_0_905" target="_blank">using if-statements</a></li>
+					</ul>
+				</p>
+				<p>
+					Let's remember our logic again. Remember that when we write JavaScript, we are translating English into very distinct steps that computers can understand. Right now, this is what we want to accomplish:
+					<ul>
+						<li>when the user clicks on the Next button, run code that will shift the image strip to the left by changing the image strip CSS.</li>
+						<li>when the user clicks on the Previous button, run code that will shift the image strip the right by changing the image strip CSS.</li>
+					</ul>
+				</p>
+				<p>
+					Okay let's do this!
+					<ol>
+						<li>
+							The relevant HTML elements that we'll have to refer to are the two buttons and the image row div. Set up the <code>prevButton</code>, <code>nextButton</code>, and <code>imageRow</code> variables that have already been partially created in the file.
+						</li>
+						<li>
+							As explained in Part 0, we need to keep track of which image we're on. Create a variable called <code>imageNum</code> that starts at <code>0</code>, since there are zero images to the left of the very first one.
+						</li>
+						<li>
+							Let's create a function, <code>showNextImage</code>, that contains the code to run when the Next button is clicked on.
+							<ul>
+								<li>Change the value of <code>imageNum</code>.</li>
+								<li>Given the variable <code>carouselWidth</code> which contains the image width in pixels, and <code>imageNum</code>, calculate how many pixels from the left the image row needs to be. Store this calculation in a variable.</li>
+								<li>The final step to show the next image is to actually change the CSS. We need to set the <code>left</code> CSS property to a <strong>string</strong> like <code>"250px"</code> (but use the variable you just created, not 250). <div class="hint">Hint: Do element.style.left = something;</div></li>
+							</ul>
+						</li>
+						<li>
+							Change the <code>onclick</code> property for <code>nextButton</code> so that when you click on the Next button, the <code>showNextImage</code> function will be called by the browser.
+							<div class="hint">Hint: Do element.onclick = something;</div>
+							At this point refresh <code>index.html</code>, and make sure you should have something like this:
+							<img src="assets/images/after2.4.gif" alt="">
+						</li>
+						<li>
+							Fill in <code>showPrevImage</code> similar to <code>showNextImage</code>, except: how does <code>imageNum</code> change this time?
+						</li>
+						<li>
+							Change the <code>onclick</code> property for <code>prevButton</code> so that when you click on the Previous button, the <code>showPrevImage</code> function will be called by the browser. At this point, refresh <code>index.html</code>, and make sure both buttons work.
+						</li>
+						<li>
+							You might have noticed a problem: we can keep clicking and the image strip will keep moving past the first image, or move past the last image! We don't want this behavior!<br><br>
+							<strong>Our solution:</strong> When we are at the first image, hide the Previous button. When we are at the last image, hide the Next button. Otherwise, don't hide the buttons. There is a provided skeleton if-statement the <code>checkControls</code> function. <strong>First delete <code>/*</code> on line 42</strong> to uncomment the function!<br><br>
+							<strong>Fill in the blanks</strong> to add or remove the provided <code>.hidden</code> CSS class depending on what <code>imageNum</code> is equal to. We also provided the variable <code>totalImages</code> which you can use when checking for the last image.<br><br>
+							Then, <strong>call the <code>checkControls</code> function inside <code>showNextImage</code> and <code>showPrevImage</code></strong>, so that after we update <code>imageNum</code> on every button click, it'll check if we need to hide or show a button.
+						</li>
+						<li>
+							At this point, refresh <code>index.html</code> and make sure the Next button is hidden when the last image is in the frame, and the Previous button is hidden when the first image is in the frame. Notice that since we start on the first image when the page is loaded, add the <code>.hidden</code> class to the Previous button in HTML (so that you can't click Previous when you first load the page).
+						</li>
+					</ol>
+				</p>
+
+				<div class="body-header">Part 3: Finishing Styles</div>
+				<p>
+					Yay all of our functionality is there! We just have a few stylistic things left! Open <code>style.css</code> again.
+					<ol>
+						<li>
+							We only want to see the image currently "under" the "picture frame" and we want to hide the rest. The blue box is <code>#carousel</code>. Add the <code>overflow: hidden;</code> rule so that the parts of the image row that "overflow" the box will not show. Also remove the blue border!
+						</li>
+						<li>
+							We want a smooth slide, not this sudden jump between images. To fix this, we'll add a CSS transition to the image strip. Add <code>transition: 0.5s left;</code> to <code>#carousel-image-row</code>. Feel free to try different durations for a faster or slower sliding animation.
+						</li>
+					</ol>
+					Congrats, you've just made your own image slider with JavaScript!
+				</p>
+
+				<div class="body-header">Part 4: Optional Button Styles</div>
+				<p>
+					The buttons are the ugly default right now. We took the arrow images from Instagram's website, and you can use them by replacing the HTML in <code>index.html</code>:
+					<pre>
+						<code>&lt;!-- Arrow images from Instagram --&gt;
+&lt;div id="carousel-controls"&gt;
+    &lt;button id="button-previous" class="hidden"&gt;
+        &lt;img src="assets/images/leftarrow.png" alt="Previous"&gt;
+    &lt;/button&gt;
+    &lt;button id="button-next"&gt;
+        &lt;img src="assets/images/rightarrow.png" alt="Next"&gt;
+    &lt;/button&gt;
+&lt;/div&gt;</code>
+					</pre>
+					And we properly positioned the buttons with this CSS:
+					<pre><code>#carousel-controls {
+    /* vertically center */
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+
+    /* spacing between the two buttons */
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+
+    /* appear in front of images */
+    z-index: 1;
+}
+
+#button-next,
+#button-previous {
+    background: none;
+    border: none;
+    cursor: pointer;
+    outline: none;
+}		</code></pre>
+				</p>
+			</div>
+		</div>
+	</div>
+</body>
+</html>

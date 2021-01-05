@@ -1,0 +1,80 @@
+body {
+  font-family: Karla;
+  color: #484848;
+  margin: 0;
+  padding: 0;
+}
+
+nav ul {
+  list-style-type: none;
+  padding-inline-start: 0;
+  margin-block-start: 0;
+  margin-block-end: 0;
+}
+
+header {
+  background-color: #FF5A5F;
+  height: 80px;
+}
+
+#logo {
+  height: 80px;
+}
+
+nav {
+  display: inline-block;
+  float: right;
+}
+
+nav li {
+  display: inline-block;
+  margin-left: 40px;
+  line-height: 80px;
+}
+
+nav a {
+  color: white;
+  font-size: 18px;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+nav a:visited {
+  color: white;
+  font-size: 18px;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+nav a:hover {
+  text-decoration: underline;
+}
+
+.content {
+  width: 900px;
+  margin: auto;
+}
+
+section {
+  padding: 30px;
+  border: 1px solid #aab3ac;
+  margin-bottom: 50px;
+}
+
+section img {
+  width: 840px;
+}
+
+h1 {
+  font-size: 40px;
+  padding-top: 4px;
+  padding-bottom: 4px;
+}
+
+h2 {
+  font-size: 30px;
+}
+
+section p {
+  font-size: 18px;
+}
